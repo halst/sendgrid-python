@@ -40,6 +40,14 @@ Example
     message = sendgrid.Mail(to='john@email.com', subject='Example', html='Body', text='Body', from_email='doe@email.com')
     status, msg = sg.send(message)
 
+In case of a 4xx or 5xx HTTP errors, ``.send`` method raises
+``SendGridClientError`` and ``SendGridServerError`` respectively.
+``SendGridError` is a base-class for SendGrid-related exceptions.
+
+.. code::
+
+    from sendgrid import SendGridError, SendGridClientError, SendGridServerError
+
 Adding Recipients
 ~~~~~~~~~~~~~~~~~
 

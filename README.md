@@ -35,6 +35,14 @@ status, msg = sg.send(message)
 
 ```
 
+In case of a 4xx or 5xx HTTP errors, `.send` method raises
+`SendGridClientError` and `SendGridServerError` respectively.
+`SendGridError` is a base-class for SendGrid-related exceptions.
+
+```python
+from sendgrid import SendGridError, SendGridClientError, SendGridServerError
+```
+
 ### Adding Recipients
 
 ```python
@@ -149,7 +157,7 @@ email = MIMEText("this is a text/plain email") # you can make this html too.
 email['Subject'] = 'This will be the subject'
 email['From'] = 'yamil@sendgrid.com'
 email['To'] = 'example@email.com'
-email['Cc'] = 'yamil.asusta@sendgrid.com, jose@sendgrid.com' # this is comma separated field 
+email['Cc'] = 'yamil.asusta@sendgrid.com, jose@sendgrid.com' # this is comma separated field
 
 s = smtplib.SMTP('smtp.sendgrid.net', 587)
 s.login('SENDGRID_USER', 'SENDGRID_PASSWORD')
